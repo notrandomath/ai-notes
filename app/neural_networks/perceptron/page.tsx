@@ -60,6 +60,7 @@ export default function PerceptronPage() {
             <li><Image src="/images/perceptron/sigmoid.svg" alt="Graph of Sigmoid Function" width={200} height={200}/></li>
           </ul>
           <p>The activation function acts as a control-flow for the information in a neural network, only letting the output through past a certain threshold or condition</p>
+          <p>The bias modifies that threshold, shifting the boundary line left or right based on its value</p>
           <p>In the binary classification problem, the activation function is what determines if the neuron classifies the point in the data as A or B</p>
           <p>If we were using a nonlinear function like Sigmoid the output represents the probability the point is part of group A or B</p>
         </TextBox>
@@ -84,7 +85,7 @@ export default function PerceptronPage() {
           <p>Whenever the angle between the <b>x</b> vector and <b>w</b> is greater than 90 degrees, such as with <InlineMath math="\mathbf{x_2}"/>, <InlineMath math="\cos(\theta)"/> will be negative which will lead the activation function to classify x in group 0 </p>
           <p>If the vector is mislabeled as positive, it will be subtracted from <b>w</b> and <b>w</b> will go further away from the vector, leading the boundary line to eventually shift away from <b>x</b> and make it 0</p>
           <p>If the vector is mislabeled as 0, it will be added to <b>w</b> and <b>w</b> will go towards the vector, leading the boundary line to eventually shift towards x and make it positive</p>
-          <p>Here's an animation depicting the training process (modified based on <Link className="underlined" href="https://github.com/ayusek/Perceptron-Animation/tree/master">https://github.com/ayusek/Perceptron-Animation/tree/master</Link>):</p>
+          <p>Here's an animation depicting the training process (modified based on <Link className="underline" href="https://github.com/ayusek/Perceptron-Animation/tree/master">https://github.com/ayusek/Perceptron-Animation/tree/master</Link>):</p>
           <Image src="/images/perceptron/perceptron_animated.gif" alt="An animation showing how the perceptron learns a binary classification problem" width={500} height={500}/>
           <p>The left side shows all the data points, as well as the weight vector in yellow</p>
           <p>the left side also shows the current training point either in the mislabeled color or green if it was labeled correctly</p>

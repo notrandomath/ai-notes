@@ -25,7 +25,7 @@ export default function CodeDisplay({file_name}: {file_name: string}) {
 
   return (
     <div className='border-2 border-black w-[80%]'>
-        <pre className="text-xs">
+        <pre>
             <code className="language-python">{code}</code>
         </pre>
     </div>

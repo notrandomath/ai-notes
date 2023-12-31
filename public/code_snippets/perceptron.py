@@ -10,27 +10,29 @@ class Perceptron:
         self._weights = np.append(initial_weights, bias) # we append the bias to the weights so that the sum can be done all in one matrix operation  
 
     def calculate_sum(self) -> float:
-        """
-        matrix multiplication of xt*w which is equivalent to the sum of xi*wi
-        """
+        """matrix multiplication of xt*w which is equivalent to the sum of xi*wi"""
         return np.transpose(self._inputs) @ self._weights
     
     def evaluate(self) -> float:
+        """runs the activation function on the sum of the current inputs and weights"""
         return sigmoid(self.calculate_sum())
     
     def test(self, inputs: np.ndarray[np.float64]) -> float:
+        """outputs the value of the inputs without changing the weights"""
         self._inputs = np.append(inputs, 1) # we append one to the inputs so that the sum with the bias can be done all in one matrix operation
         return self.evaluate()
     
     def train(self, inputs: np.ndarray[np.float64], expected: np.ndarray[np.float64]) -> None:
+        """changes the weights according to the training input"""
         self._inputs = np.append(inputs, 1) # we append one to the inputs so that the sum with the bias can be done all in one matrix operation
         self._weights = self._weights + LEARNING_RATE*(expected-self.evaluate())*self._inputs
 
 def train_perceptron(p: Perceptron, training_dataset: np.ndarray[np.float64], expected: np.ndarray[np.float64]):
+    """trains for each set of inputs and expected value"""
     for inputs, expected in zip(training_dataset, expected):
-        print(inputs, expected)
         p.train(inputs, expected)
 
+# the training dataset we'll be using
 training_dataset = np.array([
     [-0.714, -5.712],
     [7.468, 7.468],
@@ -54,13 +56,19 @@ training_dataset = np.array([
     [-9.795, -48.975],
 ])
 
+# the expected values for the training dataset
 expected_training = np.array([0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0])
 
 if __name__ == '__main__':
-    x = np.array([0.0, 0.1])
-    initial_weights = np.array([1.0, 1.0])
+    # the test input
+    x = np.array([0.0, 8])
+
+    # makes the Perceptron object
+    initial_weights = np.array([-1.0, -1.0])
     bias = 0.0
     p = Perceptron(initial_weights, bias)
+
+    # trains and prints out the test results and weights
     train_perceptron(p, training_dataset, expected_training)
     print(p.test(x))
     print([round(x, 3) for x in p._weights])
