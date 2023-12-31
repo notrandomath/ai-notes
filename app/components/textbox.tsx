@@ -1,5 +1,5 @@
 import React from "react";
-import { Children, cloneElement, ReactNode } from "react";
+import { Children, ReactNode } from "react";
 
 export default function TextBox({children}: {children: ReactNode}) {
     return (
@@ -12,7 +12,7 @@ export default function TextBox({children}: {children: ReactNode}) {
                     }
                     
                     // Return the original child if no modification is needed
-                    return child;;
+                    return child;
                 })}
             </ul>
         </div>
