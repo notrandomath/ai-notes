@@ -26,6 +26,15 @@ h2{
   font-size: 25px;
   font-weight: 400;
 }
+h3{
+  font-size: 20px;
+  font-weight: 600;
+}
 ul {
   list-style-type: disc;
+}
+
+ul ul {
+  list-style-type: circle; /* Nested list uses a different bullet point */
+  margin-left: 20px;
 }

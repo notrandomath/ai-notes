@@ -1,14 +1,13 @@
 import numpy as np
 
-LEARNING_RATE = 0.5
-def RELU(x: float) -> float:
-    return max(x, 0)
+LEARNING_RATE = 0.1
+def sigmoid(x: float) -> float:
+    return 1 / (1 + np.exp(-x))
 
 class Perceptron:
     def __init__(self, initial_weights: np.ndarray[np.float64], bias: np.float64) -> None:
-        # add 1 to end of inputs and bias to end of weights so that 1*bias can happen in calculate_sum
         self._inputs = np.array([])
-        self._weights = np.append(initial_weights, bias)
+        self._weights = np.append(initial_weights, bias) # we append the bias to the weights so that the sum can be done all in one matrix operation  
 
     def calculate_sum(self) -> float:
         """
@@ -17,14 +16,14 @@ class Perceptron:
         return np.transpose(self._inputs) @ self._weights
     
     def evaluate(self) -> float:
-        return RELU(self.calculate_sum())
+        return sigmoid(self.calculate_sum())
     
     def test(self, inputs: np.ndarray[np.float64]) -> float:
-        self._inputs = np.append(inputs, 1)
+        self._inputs = np.append(inputs, 1) # we append one to the inputs so that the sum with the bias can be done all in one matrix operation
         return self.evaluate()
     
     def train(self, inputs: np.ndarray[np.float64], expected: np.ndarray[np.float64]) -> None:
-        self._inputs = np.append(inputs, 1)
+        self._inputs = np.append(inputs, 1) # we append one to the inputs so that the sum with the bias can be done all in one matrix operation
         self._weights = self._weights + LEARNING_RATE*(expected-self.evaluate())*self._inputs
 
 def train_perceptron(p: Perceptron, training_dataset: np.ndarray[np.float64], expected: np.ndarray[np.float64]):
@@ -64,4 +63,4 @@ if __name__ == '__main__':
     p = Perceptron(initial_weights, bias)
     train_perceptron(p, training_dataset, expected_training)
     print(p.test(x))
-    print(p._weights)
+    print([round(x, 3) for x in p._weights])
