@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import PreReq from "@/app/components/prereq"
 import TextBox from "@/app/components/textbox";
 import { PreReqDictionary } from '../../../types';

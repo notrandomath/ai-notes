@@ -2,7 +2,7 @@ import React, { useState, Children, ReactNode } from "react";
 import { FaAngleRight } from "react-icons/fa";
 
 export default function Dropdown({heading, menuOpen, setMenuOpen, children}: {heading:string, menuOpen: boolean, setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>, children: ReactNode}) {
-    const [dropdownOpen, setDropDownOpen] = useState(true)
+    const [dropdownOpen, setDropDownOpen] = useState(false)
     return (
         <div className="[dropdown]">
             <div className="[dropdownButton] w-full h-[60px] px-[10px] space-x-[10px] border-2 border-gray-400 bg-gray-200 cursor-pointer flex flex-row" onClick={()=>setDropDownOpen(!dropdownOpen)}>
